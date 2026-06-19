@@ -66,6 +66,7 @@ function actualizarSelectProductos() {
     selectProducto.innerHTML = opciones;
 }
 
+
 function actualizarTablasUI() {
     textoTotalGanancias.innerHTML = "$" + gananciasTotales;
 
@@ -189,7 +190,7 @@ if (formularioFacturacion) {
             return;
         }
 
-        productoSeleccionado.stock = productoSeleccionado.stock - quantityAComprar;
+        
         productoSeleccionado.stock = productoSeleccionado.stock - cantidadAComprar;
 
         var totalVentaFactura = productoSeleccionado.precioVentaPublico * cantidadAComprar;
