@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang ="es">
+<head>
+    <meta charset ="UTF-8">
+    <meta name ="viewport" content ="width=device-width, initial-scale=1.0">
+    <title>SmartStock</title>
+    <link rel ="stylesheet" href ="css/estilos.css">
+</head>
+<body>
+
+    <header>
+        <img src ="https://cdn-icons-png.flaticon.com/512/2897/2897808.png" alt ="Logo SmartStock">
+        <div>
+            <h1>SmartStock PRO</h1>
+            <p>Gestión de Inventarios y Control de Ventas Diarias</p>
+        </div>
+    </header>
+
+    <section id ="seccion-login" class ="tarjeta-login">
+        <h2>Ingreso al Sistema</h2>
+        <p>Introduce tus credenciales de administrador</p>
+        <form id ="formulario-login">
+            <label>Usuario corporativo</label>
+            <input type ="text" id ="usuario" required placeholder="Ej. admin">
+            
+            <label>Contraseña</label>
+            <input type ="password" id ="clave" required placeholder="....">
+            
+            <button type ="submit" class ="btn-ingresar">Autenticar Empresa</button>
+            <p id ="error-login" class ="etiqueta-error" style ="display:none;">Credenciales incorrectas.</p>
+        </form>
+    </section>
+
+    <main id ="inventario-principal" style ="display:none; max-width: 1200px; margin: 20px auto; padding: 0 20px;">
+        
+        <nav class ="barra-pestanas">
+            <button id ="pestana-registro" class ="btn-pestana activa" onclick ="cambiarPestana('registro')">Registrar y Operaciones</button>
+            <button id ="pestana-inventario" class ="btn-pestana" onclick ="cambiarPestana('inventario')">Ver Inventario General</button>
+            <button id ="pestana-reportes" class ="btn-pestana" onclick ="cambiarPestana('reportes')">Libro de Ventas</button>
+            <button id ="pestana-factura" class ="btn-pestana" onclick ="cambiarPestana('factura')">Generar Factura</button>
+            <button id ="btn-salir" class ="btn-pestana salir">Salir</button>
+        </nav>
+
+        <div id ="vista-registro" class ="vista-contenido">
+            <div class ="diseno-dos-columnas">
+                <section class ="bloque-contenido tarjeta-balance">
+                    <h3>Caja Activa (Ventas del Día)</h3>
+                    <div id ="total-ganancias">$0</div>
+                    <p>Dinero acumulado por transacciones en tiempo real</p>
+                </section>
+
+                <section class ="bloque-contenido">
+                    <h2>Registrar o Abastecer Artículo</h2>
+                    <p style ="font-size:12px; color:gray; margin-top:-10px;">Nota: Si el producto ya existe, se le sumará el stock ingresado automáticamente.</p>
+                    <form id ="formulario-inventario">
+                        <label>Nombre del artículo:</label>
+                        <input type ="text" id ="nombre" required placeholder="Ej. Arroz 1kg">
+                        
+                        <label>Categoría / Tipo:</label>
+                        <input type ="text" id ="tipo" required placeholder="Ej. Alimentos">
+                        
+                        <label>Precio Costo Base ($):</label>
+                        <input type ="number" id ="precio" required min="0" placeholder="Ej. 3000">
+
+                        <label>Porcentaje de Ganancia Deseado (%):</label>
+                        <input type ="number" id ="ganancia" required min="1" max="500" placeholder="Ej. 20">
+                        
+                        <label>Cantidad de Unidades (Añadir al Stock):</label>
+                        <input type ="number" id ="stock" required min="0" placeholder="Ej. 10">
+                        
+                        <button type ="submit" class ="btn-guardar">Procesar Producto</button>
+                    </form>
+                </section>
+            </div>
+        </div>
+
+        <div id ="vista-inventario" class ="vista-contenido" style ="display:none;">
+            <section class ="bloque-contenido">
+                <h2>Inventario General y Estructura de Precios</h2>
+                <div class ="tabla-responsiva">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Producto</th>
+                                <th>Categoría</th>
+                                <th>Costo Base</th>
+                                <th>IVA (19%)</th>
+                                <th>P. Venta</th>
+                                <th>Stock Actual</th>
+                                <th>Acción</th>
+                            </tr>
+                        </thead>
+                        <tbody id ="tablaProductos">
+                            </tbody>
+                    </table>
+                </div>
+            </section>
+        </div>
+
+        <div id ="vista-reportes" class ="vista-contenido" style ="display:none;">
+            <section class ="bloque-contenido">
+                <h2>Libro Diario de Ventas Registradas</h2>
+                <div class ="tabla-responsiva">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Hora de Venta</th>
+                                <th>Artículo Vendido</th>
+                                <th>Precio Cobrado</th>
+                            </tr>
+                        </thead>
+                        <tbody id ="tablaVentas">
+                            </tbody>
+                    </table>
+                </div>
+            </section>
+        </div>
+
+        <div id ="vista-factura" class ="vista-contenido" style ="display:none;">
+            <div class ="diseno-dos-columnas">
+                <section class ="bloque-contenido">
+                    <h2>Datos de la Venta Comercial</h2>
+                    <form id ="formulario-facturacion">
+                        <label>Nombre del Cliente:</label>
+                        <input type ="text" id ="cliente-nombre" required placeholder="Ej. Juan Pérez">
+                        
+                        <label>Seleccionar Producto Disponible:</label>
+                        <select id ="select-producto" required style ="width:100%; padding:8px; margin-top:4px; border-radius:4px; border:1px solid grey;">
+                            </select>
+                        
+                        <label>Cantidad a Comprar:</label>
+                        <input type ="number" id ="factura-cantidad" required min="1" placeholder="Ej. 2">
+                        
+                        <button type ="submit" class ="btn-guardar" style ="background-color: darkblue;">Emitir Factura Legal</button>
+                    </form>
+                </section>
+
+                <section class ="bloque-contenido" style ="background-color: #fff; border: 2px dashed #000;">
+                    <div id ="plantilla-factura" style ="padding: 10px; font-family: monospace; line-height: 1.4;">
+                        <h3 style ="text-align: center; margin: 0; color: #000;">*** SMARTSTOCK PRO LTDA ***</h3>
+                        <p style ="text-align: center; font-size: 11px; margin: 2px 0;">NIT: 901.432.789-1</p>
+                        <hr style ="border-top: 1px dashed black;">
+                        <p><strong>Fecha/Hora:</strong> <span id ="factura-fecha">--/--/---- --:--:--</span></p>
+                        <p><strong>Cliente:</strong> <span id ="factura-cliente-texto">------------------</span></p>
+                        <hr style ="border-top: 1px dashed black;">
+                        <p><strong>Detalle del Artículo:</strong></p>
+                        <p id ="factura-detalle-prod">Ningún producto seleccionado</p>
+                        <hr style ="border-top: 1px dashed black;">
+                        <p>Subtotal (Sin IVA): <span style ="float: right;" id ="factura-subtotal">$0</span></p>
+                        <p>IVA Calculado (19%): <span style ="float: right;" id ="factura-iva">$0</span></p>
+                        <p><strong>TOTAL NETO A PAGAR:</strong> <span style ="float: right; font-weight: bold;" id="factura-total">$0</span></p>
+                        <hr style ="border-top: 1px dashed black;">
+                        <p style ="text-align: center; font-size: 11px;">¡Gracias por su compra corporativa!</p>
+                    </div>
+                </section>
+            </div>
+        </div>
+
+    </main>
+
+    <script src ="js/app.js"></script>
+</body>
+</html>

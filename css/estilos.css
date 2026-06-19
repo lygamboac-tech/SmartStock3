@@ -1,0 +1,118 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f2f5;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: darkblue;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+
+header img {
+    height: 45px;
+    width: auto;
+    filter: brightness(0) invert(1);
+}
+
+header h1 { margin: 0; font-size: 24px; }
+header p { margin: 4px 0 0 0; font-size: 12px; opacity: 0.8; }
+
+.barra-pestanas {
+    display: block;
+    margin: 20px 0;
+    border-bottom: 2px solid silver;
+    padding-bottom: 5px;
+}
+
+.btn-pestana {
+    background-color: #e0e0e0;
+    color: black;
+    border: 1px solid silver;
+    padding: 10px 15px;
+    font-size: 13px;
+    font-weight: bold;
+    margin-right: 5px;
+    border-radius: 4px 4px 0 0;
+}
+
+.btn-pestana.activa {
+    background-color: darkblue;
+    color: white;
+    border-bottom: 1px solid darkblue;
+}
+
+.btn-pestana.salir { background-color: #cc2121; color: white; float: right; }
+
+.diseno-dos-columnas {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+}
+
+@media (min-width: 750px) {
+    .diseno-dos-columnas { grid-template-columns: 1fr 1fr; }
+}
+
+.tarjeta-login {
+    max-width: 350px;
+    margin: 60px auto;
+    background-color: white;
+    padding: 30px;
+    border: 1px solid silver;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+}
+
+.tarjeta-login h2 { text-align: center; color: darkblue; margin-top: 0; }
+
+.bloque-contenido {
+    background-color: white;
+    padding: 20px;
+    border: 1px solid silver;
+    border-radius: 8px;
+}
+
+.bloque-contenido h2 {
+    margin-top: 0;
+    color: darkblue;
+    font-size: 18px;
+    border-bottom: 2px solid lightblue;
+    padding-bottom: 6px;
+}
+
+.tarjeta-balance { background-color: #e8f5e9; text-align: center; border: 2px solid green; }
+#total-ganancias { font-size: 32px; font-weight: bold; color: darkgreen; margin: 8px 0; }
+
+form label { display: block; font-weight: bold; margin-top: 10px; font-size: 13px; }
+input { width: 100%; padding: 8px; margin-top: 4px; box-sizing: border-box; border: 1px solid grey; border-radius: 4px; }
+button { padding: 10px; font-weight: bold; cursor: pointer; border: none; border-radius: 4px; }
+
+.btn-ingresar { background-color: lightblue; color: black; width: 100%; }
+.btn-guardar { background-color: green; color: white; width: 100%; margin-top: 15px; }
+
+.btn-vender { background-color: orange; color: black; padding: 5px 10px; font-size: 11px; margin-right: 4px; }
+.btn-eliminar { background-color: red; color: white; padding: 5px 10px; font-size: 11px; }
+
+.tabla-responsiva { width: 100%; overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; min-width: 650px; }
+th, td { border: 1px solid silver; padding: 8px; text-align: left; font-size: 13px; }
+th { background-color: darkblue; color: white; }
+
+.alerta-roja {
+    background-color: #ffebee;
+    color: #c62828;
+    font-weight: bold;
+    padding: 2px 6px;
+    border-radius: 4px;
+    border: 1px solid #ef9a9a;
+}
+
+.etiqueta-error { color: red; text-align: center; font-weight: bold; margin-top: 12px; }
